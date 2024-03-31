@@ -1,8 +1,6 @@
 package com.huanli233.xtcdecrypter.main;
 
 import java.io.File;
-import java.io.IOException;
-
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -13,6 +11,8 @@ import com.huanli233.utils.InputUtil;
 public class DecrypterMain {
 	
 	public static void main(String[] args) {
+		System.out.println("XTCDecrypter");
+		System.out.println("https://github.com/huanli233/XTCDecrypter");
 		// Init File
 		File soFile = new File("libxtcSecurity.so");
 		if (!soFile.exists()) {
