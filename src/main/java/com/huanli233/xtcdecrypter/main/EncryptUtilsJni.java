@@ -86,6 +86,7 @@ public class EncryptUtilsJni extends AbstractJni {
     
     static final String methodSign = "secretKeyDecrypt(Ljava/lang/String;)Ljava/lang/String;";
     public String decryptKey(String key) {
+    	key = key.replace("&lt;", "<").replace("&gt;", ">");
 		if (key.startsWith("KeyEncrypt")) {
 			key = key.substring(10);
 		}

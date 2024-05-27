@@ -7,12 +7,21 @@ import org.apache.log4j.Logger;
 
 import com.huanli233.utils.FileUtil;
 import com.huanli233.utils.InputUtil;
+import com.huanli233.xtcdecrypter.extractor.XtcinfoExtractor;
+import com.huanli233.xtcdecrypter.utils.XTCKeyUtil;
 
 public class DecrypterMain {
 	
 	public static void main(String[] args) {
-		System.out.println("XTCDecrypter");
+		System.out.println("XTCDecrypter V1.1.0");
 		System.out.println("https://github.com/huanli233/XTCDecrypter");
+		
+		// Extract from xtcinfo mode
+		if (args.length == 2 && args[0].equals("-img")) {
+			new XtcinfoExtractor().run(args[1]);
+			return;
+		}
+		
 		// Init File
 		File soFile = new File("libxtcSecurity.so");
 		if (!soFile.exists()) {
@@ -54,7 +63,13 @@ public class DecrypterMain {
 		// Decrypt data
 		try {
 			String result = EncryptUtilsJni.getInstance().decryptKey(input);
-			System.out.println(result);
+			if (XTCKeyUtil.checkKey(result)) {
+				System.out.println("解密成功: ");
+				System.out.println(result);
+			} else {
+				System.out.println("解密完成，但经过检查发现解密结果不是正确的 key 格式，以下结果可能不正确，若不正确请检查你的输入内容: ");
+				System.out.println(result);
+			}
 		} catch (Exception e) {
 			System.err.println("发生了错误 Error: ");
 			e.printStackTrace();
