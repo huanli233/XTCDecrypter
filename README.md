@@ -19,5 +19,5 @@ xtcdecrypter -f <a_file_containing_your_encrypted_key>
 
 从 **xtcinfo** 中提取 key: 
 ```shell
-xtcdecrypter -f <your_xtcinfo_file>
+xtcdecrypter -img <your_xtcinfo_file>
 ```
